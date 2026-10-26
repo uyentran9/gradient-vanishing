@@ -1,5 +1,5 @@
 ---
-title: "AIO 2026 - Kaggle 1 - Hepatic Risk Outcome Prediction"
+title: "The Effects of Vanishing Gradients in Deep Neural Networks"
 layout: single
 author_profile: true
 --- 
