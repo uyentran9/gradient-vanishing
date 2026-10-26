@@ -17,7 +17,7 @@ author_profile: true
 
 A controlled empirical study of **depth-dependent weight-gradient attenuation, early-layer trainability, and activation-dependent optimization behavior** in multilayer perceptrons (MLPs) trained on BloodMNIST.
 
-> **Project:** AIO 2026 — Module 4, individual empirical study  
+> **Project:** The Effects of Vanishing Gradients in Deep Neural Networks, individual empirical study  
 > **Research area:** Deep learning and neural network optimization  
 > **Dataset:** BloodMNIST (MedMNIST v2)  
 > **Framework:** PyTorch  
