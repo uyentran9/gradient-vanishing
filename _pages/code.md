@@ -5,6 +5,16 @@ permalink: /code/
 author_profile: true
 ---
 
+This page provides the PyTorch implementation and executed Jupyter Notebook for the study **Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST**.
+
+The source notebook supports inspection and reproduction of the experiments. The HTML export provides a read-only version with saved code cells, explanations, outputs, tables, and figures.
+
+---  
+
+## Jupyter Notebook — Executable Source  
+
+The original `.ipynb` file contains the experimental implementation, including model architectures, training procedures, gradient measurements, and analysis.  
+
 <p>This page embeds the fully executed notebook, exported directly from Jupyter — every cell, output, and chart exactly as run.</p>
 
 <div class="code-actions">
@@ -15,6 +25,12 @@ author_profile: true
 <div id="notebook-wrap" class="notebook-wrap">
   <iframe id="notebook-frame" src="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb" loading="lazy"></iframe>
 </div>
+
+---
+
+## Executed Notebook — HTML Preview  
+
+The HTML export presents the notebook in a browser-readable format, preserving its saved experimental outputs and visualizations without requiring the notebook to be executed.  
 
 <div class="code-actions">
   <a class="data-download-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" download>⬇ Download .ipynb</a>
