@@ -13,7 +13,7 @@ author_profile: true
 </div>
 
 <div id="notebook-wrap" class="notebook-wrap">
-  <iframe id="notebook-frame" src="{{ site.baseurl }}/files/Kaggle1_Uyen8.html" loading="lazy"></iframe>
+  <iframe id="notebook-frame" src="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb" loading="lazy"></iframe>
 </div>
 
 <style>
