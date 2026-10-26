@@ -16,6 +16,15 @@ author_profile: true
   <iframe id="notebook-frame" src="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb" loading="lazy"></iframe>
 </div>
 
+<div class="code-actions">
+  <a class="data-download-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" download>⬇ Download .ipynb</a>
+  <a class="data-download-btn code-secondary-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" target="_blank" rel="noopener">↗ Open full-screen</a>
+</div>
+
+<div id="notebook-wrap" class="notebook-wrap">
+  <iframe id="notebook-frame" src="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" loading="lazy"></iframe>
+</div>
+
 <style>
 .code-actions { margin: 1em 0 1.5em; display: flex; gap: 0.75em; flex-wrap: wrap; }
 .data-download-btn {
