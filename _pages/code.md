@@ -24,7 +24,7 @@ author_profile: true
   font-size: 0.9rem;
   font-weight: 600;
   color: #fff !important;
-  background: var(--global-base-color, #2f6f4f);
+  background: #287f92;
   border-radius: 4px;
   text-decoration: none !important;
 }
@@ -62,7 +62,7 @@ author_profile: true
 
 <script>
 (function () {
-  var url = '{{ site.baseurl }}/files/Kaggle1_Uyen8.html';
+  var url = '{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb';
   fetch(url, { method: 'HEAD' }).then(function (res) {
     if (!res.ok) throw new Error('missing');
   }).catch(function () {
