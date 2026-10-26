@@ -5,6 +5,9 @@ layout: single
 author_profile: true
 ---
 
+Presentation Slides are not available.
+
+<!--  
 ## Presentation Slides
 
 <iframe
@@ -15,3 +18,4 @@ author_profile: true
 </iframe>
 
 [⬇ Download the .pptx file](/hepatic-risk-prediction/files/UyenTran_Hepatic_Risk_Prediction_Slides.pptx)
+-->
