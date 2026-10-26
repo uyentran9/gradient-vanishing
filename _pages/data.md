@@ -1,4 +1,3 @@
-<!--
 ---
 layout: single
 title: "Dataset"
@@ -6,6 +5,7 @@ permalink: /dataset/
 author_profile: true
 ---
 
+<!--
 <p>Three files are used in this competition: the training set, the test set, and a sample submission file showing the required output format. Each preview below shows the first 20 rows and every column. Use the download buttons to get the full files.</p>
 
 
@@ -176,13 +176,6 @@ author_profile: true
 })();
 </script>
 -->  
-
----
-layout: single
-title: "Dataset"
-permalink: /dataset/
-author_profile: true
----
 
 ## BloodMNIST (MedMNIST v2)
 
