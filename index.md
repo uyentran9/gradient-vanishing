@@ -1,5 +1,5 @@
 ---
-title: "AIO 2026 - Kaggle 1 - Hepatic Risk Outcome Prediction"
+title: "Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST"
 layout: single
 author_profile: true
 --- 
@@ -11,206 +11,136 @@ author_profile: true
        style="border-radius: 14px;"/>
 </p>
 
+---  
 
-# Hepatic Risk Outcome Prediction
+# Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST
 
-A reproducible tabular machine-learning pipeline for predicting three cirrhosis outcomes from demographic, clinical, laboratory, and treatment-related records.
+A controlled empirical study of **depth-dependent weight-gradient attenuation, early-layer trainability, and activation-dependent optimization behavior** in multilayer perceptrons (MLPs) trained on BloodMNIST.
 
-> **Educational project:** AIO 2026 Kaggle Competition 1  
-> **Task:** Multiclass probability prediction (`C`, `CL`, `D`)  
-> **Primary metric:** Multiclass Log Loss  
-> **Final reliable result:** OOF Log Loss **0.37010** | Public Leaderboard **0.38042**
+> **Project:** AIO 2026 — Module 4, individual empirical study  
+> **Research area:** Deep learning and neural network optimization  
+> **Dataset:** BloodMNIST (MedMNIST v2)  
+> **Framework:** PyTorch  
+> **Experimental scope:** Two controlled stages; 18 unique main runs across three random seeds
 
-## Project overview
+## Research overview
 
-The goal is to predict probabilities of three patient outcomes (sum to 1):
+Training deep feedforward networks depends on gradients reaching the parameters of earlier layers. Under some architectures and training conditions, repeated transformations during backpropagation can yield very small early-layer gradients, potentially restricting parameter movement and slowing optimization.
 
-- `C`: alive
-- `CL`: alive after liver transplant
-- `D`: deceased
+This project investigates **how increasing MLP depth is associated with layer-wise weight-gradient magnitudes and early-layer trainability**, then examines how **Sigmoid, Tanh, and ReLU** behave at a fixed depth. BloodMNIST serves as a standardized image-classification testbed; the objective is to analyze neural-network optimization rather than develop a clinical image-classification system.
 
-The competition evaluates predicted probabilities rather than only hard class labels. This makes calibration and validation design important: a confident wrong prediction is penalized much more heavily than an uncertain prediction.
+### Research questions
 
-The dataset contains **12,000 training rows**, **10,000 test rows**, and **18 raw predictors** composed of numerical and categorical clinical variables. The main modeling challenges are severe class imbalance, high and structured missingness, heterogeneous feature types, and substantial overlap between the rare `CL` class and the other outcomes.
+1. **Network depth:** How does increasing depth affect layer-wise weight-gradient magnitudes and the trainability of early layers in Sigmoid MLPs?
+2. **Activation functions:** At a fixed depth and under a common initialization and training protocol, how do Sigmoid, Tanh, and ReLU differ in relative gradient attenuation, optimization progress, and validation performance?
 
-## Key contributions
+## Experimental design
 
-- Built a leakage-controlled preprocessing and validation pipeline with shared 5-fold stratified splits.
-- Preserved informative missingness rather than dropping high-missing columns.
-- Engineered an `in_trial` proxy from a seven-column block-missingness pattern.
-- Compared Logistic Regression, XGBoost, LightGBM, and CatBoost using out-of-fold Log Loss.
-- Tuned all three boosting models with a two-stage Optuna workflow: a low-cost scout round followed by a larger final search.
-- Optimized ensemble weights on OOF predictions with Nelder-Mead.
-- Tested seed averaging as a stability experiment and documented the disagreement between OOF and Public Leaderboard results.
-- Performed class-level error analysis, showing that the rare `CL` class remains the principal source of error.
+| Component | Configuration |
+|---|---|
+| Input | BloodMNIST RGB images, 28 × 28 pixels; flattened to 2,352 features |
+| Architecture | Constant-width MLPs with 256 units per hidden layer and eight output logits |
+| Stage A — Depth | D2, D5, D10, D20; Sigmoid activation |
+| Stage B — Activation | Sigmoid, Tanh, ReLU; fixed D5 architecture |
+| Initialization | Xavier Uniform (gain = 1); zero biases |
+| Optimization | Plain SGD; learning rate 0.1; momentum 0; weight decay 0 |
+| Training | Cross-entropy loss; 20 epochs; batch size 128 |
+| Repetitions | Seeds 0, 1, 2; 18 unique main runs, reusing D5–Sigmoid across stages |
+| Evaluation | Official BloodMNIST validation split; cross-entropy, accuracy, macro-F1 |
 
-## Modeling workflow
+The official dataset partitions contain **11,959 training**, **1,712 validation**, and **3,421 test** images. Channel-wise normalization statistics were estimated from the training split only and applied to all partitions; no data augmentation or additional splitting was performed. The test split was loaded for data verification but **was not used to report classification performance**.
 
-1. **Structural audit**
-   - Checked train/test column compatibility, duplicate IDs, target encoding, and unseen categories.
-   - Preserved `"None"` as a valid value in `Edema_Status`.
-   - Treated `Clinical_Stage` as categorical despite its numeric storage format.
+Stage A varied network depth under a fixed Sigmoid–Xavier–SGD configuration. D5 was then selected for Stage B because it exhibited early-layer gradient attenuation while retaining measurable optimization progress. Stage B varied only the hidden-layer activation function; it did not test activation-by-depth interactions.
 
-2. **Exploratory data analysis**
-   - Measured class imbalance: `C` 67.9%, `CL` 2.64%, `D` 29.4%.
-   - Examined missingness by feature and by target class.
-   - Identified a seven-column all-or-nothing missingness block.
-   - Compared numerical and categorical distributions across outcomes and between train/test sets.
+## What I investigated
 
-3. **Feature engineering and preprocessing**
-   - Added `in_trial`, an inferred cohort indicator based on block completeness.
-   - Added missing-value indicators for the Logistic Regression baseline.
-   - Used a dedicated `__MISSING__` category for categorical missing values.
-   - Applied one-hot encoding and scaling only where required by the model family.
-   - Preserved clinically plausible extreme values instead of automatically removing them as outliers.
+- **Gradient propagation across depth:** Measured root-mean-square (RMS) weight gradients for every hidden layer, comparing absolute magnitudes and first-to-last hidden-layer gradient ratios.
+- **Early-layer trainability:** Tracked normalized first-layer weight displacement from initialization and training-loss progression.
+- **Optimization progress:** Used a predefined mean training-loss threshold of **1.50**, selected following a short learning-rate pilot and fixed before the main experiments.
+- **Activation-dependent behavior:** Compared Sigmoid, Tanh, and ReLU at D5 while holding initialization, optimizer, learning rate, data processing, and training duration constant.
+- **Run-to-run variability:** Repeated each unique configuration across three random seeds and summarized results as **mean ± sample standard deviation**.
+- **Validation performance:** Reported validation cross-entropy, accuracy, and macro-F1 alongside gradient and training measurements.
 
-4. **Validation**
-   - Shared 5-fold `StratifiedKFold` across all models.
-   - Used complete OOF probability matrices for fair model comparison and blending.
-   - Selected models primarily by OOF Log Loss; leaderboard scores were used only as secondary evidence.
+## Models and methods
 
-5. **Modeling and tuning**
-   - Logistic Regression baseline.
-   - XGBoost, LightGBM, and CatBoost.
-   - Two-round Optuna tuning per boosting model using repeated cross-validation.
-   - OOF-weighted blending of tuned model probabilities.
-
-6. **Error analysis**
-   - Compared default, tuned, and final blended predictions.
-   - Evaluated confusion matrices, per-class recall, class-specific Log Loss, and confidence behavior.
+`PyTorch` · `Configurable Deep MLPs` · `Backpropagation` · `Sigmoid / Tanh / ReLU` · `Xavier Uniform Initialization` · `SGD` · `Layer-wise Gradient RMS` · `Weight Displacement` · `Multi-Seed Evaluation`
 
 ## Experimental results
 
-| Experiment | Model / change | OOF Log Loss | Public LB | Decision |
-|---:|---|---:|---:|---|
-| 0 | Logistic Regression baseline | 0.45596 | - | Baseline |
-| 1 | XGBoost, default settings | 0.37412 | 0.38372 | Kept |
-| 2 | LightGBM, default settings | 0.37464 | 0.38480 | Kept |
-| 3 | CatBoost, default settings | 0.38347 | 0.38953 | Kept for blending |
-| 4 | Equal-weight default blend | 0.37431 | 0.38407 | Rejected |
-| 5 | Optimized default blend | 0.37330 | 0.38364 | Superseded |
-| 7 | Optuna-tuned XGBoost | 0.37149 | - | Kept |
-| 8 | Optuna-tuned LightGBM | 0.37094 | - | Kept |
-| 9 | Optuna-tuned CatBoost | 0.37952 | - | Kept |
-| 10 | Optimized tuned blend | **0.37010** | **0.38042** | **Final reliable submission** |
-| 11 | Tuned + seed-averaged blend | 0.36713 | 0.38067 | Inconclusive; not selected |
+### Stage A — Network depth under Sigmoid activation
 
-The seed-averaged candidate achieved a lower OOF score but a slightly worse Public Leaderboard score. Because both differences were small and the experiment added complexity without consistent external confirmation, the simpler tuned blend was retained as the final reliable submission.
+The following results summarize epoch-1 first-to-last hidden-layer **RMS weight-gradient ratios**, epoch-20 normalized first-layer weight displacement, and epoch-20 validation accuracy. Values are the mean across three seeds.
 
-## Final model
-
-The selected solution blends Optuna-tuned boosting models using weights optimized on OOF predictions:
-
-- **XGBoost:** 0.4308
-- **LightGBM:** 0.5683
-- **CatBoost:** 0.0008
-
-The near-zero CatBoost weight indicates that the final ensemble behaves effectively as a two-model XGBoost-LightGBM blend, while retaining the complete optimization workflow for transparency.
-
-### Final performance
-
-- **OOF Log Loss:** 0.37010
-- **Public Leaderboard Log Loss:** 0.38042
-- **Submission file:** `submission_blend_optimised_v3.csv`
-
-## Error analysis
-
-The largest remaining weakness is the rare `CL` class.
-
-| Class | Samples | Recall: default / tuned / blend | Mean Log Loss: default / tuned / blend |
+| Hidden layers | Gradient ratio (epoch 1) | First-layer displacement (epoch 20) | Validation accuracy (epoch 20) |
 |---|---:|---:|---:|
-| C | 8,151 | 0.936 / 0.934 / 0.935 | 0.199 / 0.198 / 0.198 |
-| CL | 317 | 0.158 / 0.196 / 0.192 | 2.496 / 2.486 / 2.441 |
-| D | 3,532 | 0.731 / 0.735 / 0.735 | 0.588 / 0.581 / 0.581 |
+| D2 | 0.4070 | 0.3279 | 81.23% |
+| D5 | 0.006369 | 0.1090 | 46.63% |
+| D10 | 4.837 × 10⁻⁶ | 2.740 × 10⁻⁵ | 18.20% |
+| D20 | 2.711 × 10⁻¹² | 0.0000* | 18.20% |
 
-Tuning slightly improved `CL` recall, but the class remained far harder than `C` or `D`. This suggests that the primary limitation is not simply hyperparameter choice; the available features provide weak separation for transplant cases, and future improvements should focus on class-specific features, weighting strategies, or better uncertainty modeling.
+The first-to-last hidden-layer gradient ratio decreased sharply with depth. D10 and D20 did not reach the predefined training-loss threshold of 1.50 within the 20-epoch training budget; D2 reached it at epoch 2, while D5 reached it after approximately 14–15 epochs.
 
-## Repository structure
+*The D20 first-layer displacement was recorded as zero at the available numerical precision. This does not imply mathematically zero parameter updates.*
 
-```text
-hepatic-risk-prediction/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── notebooks/
-│   └── hepatic_risk_outcome_prediction.ipynb
-├── reports/
-│   └── technical_report.pdf
-├── results/
-│   ├── experiment_summary.csv
-│   ├── submission_blend_optimised_v3.csv   # include only if sharing is permitted
-│   └── figures/
-│       ├── target_distribution.png
-│       ├── missingness.png
-│       └── error_analysis.png
-├── docs/
-│   └── notebook_preview.html
-└── data/
-    └── README.md
-```
+### Stage B — Activation comparison at D5
 
-The repository intentionally does not include an empty `src/` directory. The current project is notebook-centered; modular source files should be added only after the reusable training and evaluation functions are extracted from the notebook.
+All three activation functions used the same D5 architecture, Xavier Uniform initialization, and SGD training protocol. Values are means across three seeds.
 
-## Reproducibility
+| Activation | Gradient ratio (epoch 1) | Validation accuracy (epoch 20) | Validation macro-F1 (epoch 20) |
+|---|---:|---:|---:|
+| Sigmoid | 0.006369 | 46.63% | 0.3377 |
+| Tanh | 0.4750 | **86.21%** | **0.8441** |
+| ReLU | 0.4954 | 81.70% | 0.7946 |
 
-### Environment
+Tanh and ReLU exhibited substantially larger relative early-layer weight gradients, greater first-layer parameter displacement, and faster training-loss reduction than Sigmoid under the shared initialization rule. Tanh attained the highest mean validation accuracy and macro-F1, while ReLU had a slightly higher mean relative gradient ratio.
 
-- Python 3.13.7
-- NumPy 2.3.3
-- pandas 2.3.3
-- scikit-learn 1.7.2
-- SciPy 1.16.2
-- XGBoost 3.3.0
-- LightGBM 4.7.0
-- CatBoost 1.2.10
-- Optuna with seeded `TPESampler`
+### Experimental figures
 
-### Run instructions
+The notebook and technical report include three primary figures:
 
-1. Obtain `aio26_train.csv` and `aio26_test.csv` from the authorized competition/course source.
-2. Place both files in the location expected by the notebook, or update the data-path cell.
-3. Install dependencies:
+1. **Figure 1 — Gradient magnitude versus hidden-layer position:** Absolute and last-layer-normalized RMS weight gradients for D2, D5, D10, and D20 at epoch 1.
+2. **Figure 2 — Gradient evolution over training:** A layer-by-epoch heatmap for the D20 Sigmoid network across 20 epochs.
+3. **Figure 3 — Training-loss trajectories:** Mean training cross-entropy loss for Stage A depths, including the predefined 1.50 threshold.
 
-```bash
-python -m pip install -r requirements.txt
-```
+## What the project demonstrates
 
-4. Open `notebooks/hepatic_risk_outcome_prediction.ipynb`.
-5. Run the notebook from top to bottom.
-6. Step 12 performs Optuna tuning and is the slow stage (approximately 5.5 hours on the original local MacBook Pro environment).
-7. The final tuned blend is created in Step 12 and validated again in the submission step.
-8. Confirm that `submission_blend_optimised_v3.csv` has 10,000 rows, the required four columns, no missing values, and row-wise probabilities summing to 1.
+The experiments provide evidence that, **under the tested Sigmoid–Xavier–SGD conditions**, increasing MLP depth is associated with pronounced early-layer weight-gradient attenuation, smaller net first-layer parameter displacement, and slower optimization. The fixed-depth comparison additionally shows that activation choice can substantially change gradient and training behavior under a common initialization rule.
 
-The non-tuning sections run in approximately 2-3 minutes on the original environment. Runtime will vary by hardware.
+The analysis treats gradient attenuation and trainability as **empirically associated**, not as proof of a unique causal mechanism. In particular, RMS weight gradients are not direct measurements of activation-gradient propagation or network Jacobian properties. The results do not establish that one activation function is universally superior.
 
-## Limitations
+## Experimental workflow and reproducibility
 
-- `CL` represents only 2.64% of the training data and remains difficult to separate.
-- The `in_trial` feature is an inferred proxy based on missingness structure, not confirmed causal metadata.
-- Blend weights were selected and evaluated on the same OOF predictions, so the small blend gain may be optimistic.
-- The Optuna integer boundary check is less sensitive than the float near-boundary check.
-- Seed averaging produced conflicting OOF and Public Leaderboard evidence.
-- No SHAP analysis or formal feature-ablation study was completed.
-- The training and tuning stages used different hardware environments.
+1. **Data preparation:** Load official BloodMNIST splits; compute RGB normalization statistics from training images only; verify dimensions and class distributions.
+2. **Model construction:** Implement and verify a configurable constant-width MLP with explicit weight and bias initialization.
+3. **Training and validation:** Train with cross-entropy and plain SGD; evaluate the full validation split after each epoch.
+4. **Gradient diagnostics:** Record weight-gradient RMS values immediately after backpropagation and before the optimizer step; log the first 100 training steps and the first 10 mini-batches of each epoch.
+5. **Protocol pilot:** Check numerical stability at D2 and D20; fix the learning rate and training-loss threshold before the main experiments.
+6. **Main experiments:** Execute Stage A and Stage B with the shared seed set; aggregate run-level results; generate figures and summary tables.
 
-## What I learned
+To reproduce the experiment, install the dependencies recorded in the repository's `requirements.txt`, open the notebook in `notebooks/`, and execute the cells in order. The MedMNIST package downloads BloodMNIST automatically into the locally configured `./data` directory. The notebook writes analysis outputs under `./results`.
 
-The strongest lesson was that model choice alone did not determine performance. Gradient boosting produced the largest initial improvement over Logistic Regression, but careful validation, missingness handling, and systematic tuning determined whether later gains were trustworthy. The equal-weight blend was a useful failure: averaging strong models did not automatically help because CatBoost was materially weaker and received too much influence. Optimizing the weights corrected that problem.
+The experiment was run with Python 3.13, PyTorch 2.14.1, and MedMNIST 3.0.2 on Apple Silicon using the MPS backend. Numerical results may vary with software versions, floating-point precision, and hardware backends.
 
-The seed-averaging experiment was even more instructive. It improved OOF Log Loss but slightly worsened the Public Leaderboard score, showing that small validation gains can be unstable and should not be interpreted without considering variance, experimental complexity, and independent evidence. The project also showed that the rare `CL` class is fundamentally a data and feature challenge: tuning improved its recall only modestly. Future work should therefore prioritize rare-class learning, controlled feature ablations, and more rigorous uncertainty analysis rather than continuing to refine the blend.
+**Project materials:** [Experimental notebook](https://github.com/uyentran9/gradient-vanishing/tree/main/notebooks) · [Technical report](https://github.com/uyentran9/gradient-vanishing/tree/main/reports) · [GitHub repository](https://github.com/uyentran9/gradient-vanishing)
 
-## Data and clinical-use notice
+## Limitations and future work
 
-<!--
-The competition data are not included in this public repository. Obtain them only through the authorized AIO competition channel and follow the organizer's sharing rules.
--->
+- The evidence comes from one low-resolution dataset and constant-width MLPs; the results should not be generalized to CNNs, Transformers, GNNs, or other datasets without further testing.
+- Deeper networks also contain more parameters, so depth-related differences cannot be attributed independently of all changes in model capacity.
+- Stage B compares activation functions only at D5 and uses a shared Xavier initialization; activation-by-depth and initialization sensitivity were not tested.
+- Three random seeds and 20 training epochs provide a limited basis for quantifying variability and longer-term optimization behavior; no formal significance tests were conducted.
+- Layer-wise RMS weight gradients and net weight displacement do not isolate the causal mechanisms of gradient attenuation or account for all individual parameter updates.
 
-This project is an educational machine-learning exercise and is **not intended for clinical decision-making or medical use**.
+Potential extensions include controlled initialization comparisons, activation-saturation diagnostics, batch normalization or residual connections, alternative optimizers, and evaluations on additional architectures and datasets.
+
+## Data and intended use
+
+BloodMNIST is a public research dataset from **MedMNIST v2**, derived from peripheral blood-cell microscopy data. The work is an empirical study of neural-network optimization and is **not intended for clinical diagnosis or medical decision-making**. Full dataset attribution and related literature are provided in the technical report.  
 
 ## Author
 
-**Uyen Tran (Victoria Tran)**  
-Individual submission, AIO 2026 Kaggle Competition 1
+**Victoria Tran (Uyen Tran)**  
+Individual project, AIO 2026 — Module 4
 
 
 
