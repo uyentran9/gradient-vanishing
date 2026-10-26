@@ -99,12 +99,13 @@ Tanh and ReLU exhibited substantially larger relative early-layer weight gradien
 The notebook and technical report include three primary figures:
 
 1. **Figure 1 — Gradient magnitude versus hidden-layer position:** Absolute and last-layer-normalized RMS weight gradients for D2, D5, D10, and D20 at epoch 1.
-   <p align="center">
+<p align="center">
   <img src="{{ site.baseurl }}/images/figure1_gradient_vs_layer.png"
        width="960"
        alt="Hepatic Risk Outcome Prediction"
        style="border-radius: 14px;"/>
-</p>
+</p>  
+
 3. **Figure 2 — Gradient evolution over training:** A layer-by-epoch heatmap for the D20 Sigmoid network across 20 epochs.  
 <p align="center">
   <img src="{{ site.baseurl }}/images/figure2_gradient_evolution_d20.png"
