@@ -106,14 +106,14 @@ The notebook and technical report include three primary figures:
        style="border-radius: 14px;"/>
 </p>  
 
-3. **Figure 2 — Gradient evolution over training:** A layer-by-epoch heatmap for the D20 Sigmoid network across 20 epochs.  
+2. **Figure 2 — Gradient evolution over training:** A layer-by-epoch heatmap for the D20 Sigmoid network across 20 epochs.  
 <p align="center">
   <img src="{{ site.baseurl }}/images/figure2_gradient_evolution_d20.png"
        width="960"
        alt="Hepatic Risk Outcome Prediction"
        style="border-radius: 14px;"/>
 </p>
-4. **Figure 3 — Training-loss trajectories:** Mean training cross-entropy loss for Stage A depths, including the predefined 1.50 threshold.  
+3. **Figure 3 — Training-loss trajectories:** Mean training cross-entropy loss for Stage A depths, including the predefined 1.50 threshold.  
 <p align="center">
   <img src="{{ site.baseurl }}/images/figure3_training_loss_curves.png"
        width="960"
