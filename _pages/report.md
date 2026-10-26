@@ -26,7 +26,7 @@ author_profile: true
   font-size: 0.9rem;
   font-weight: 600;
   color: #fff !important;
-  background: var(--global-base-color, #2f6f4f);
+  background: #287f92;
   border-radius: 4px;
   text-decoration: none !important;
 }
