@@ -7,7 +7,7 @@ author_profile: true
 <p align="center">
   <img src="{{ site.baseurl }}/images/gradient_vanishing.png"
        width="960"
-       alt="Hepatic Risk Outcome Prediction"
+       alt="Vanishing Gradients"
        style="border-radius: 14px;"/>
 </p>
 
@@ -29,10 +29,19 @@ Training deep feedforward networks depends on gradients reaching the parameters 
 
 This project investigates **how increasing MLP depth is associated with layer-wise weight-gradient magnitudes and early-layer trainability**, then examines how **Sigmoid, Tanh, and ReLU** behave at a fixed depth. BloodMNIST serves as a standardized image-classification testbed; the objective is to analyze neural-network optimization rather than develop a clinical image-classification system.
 
-### Research questions
+### Research Questions
 
-1. **Network depth:** How does increasing depth affect layer-wise weight-gradient magnitudes and the trainability of early layers in Sigmoid MLPs?
-2. **Activation functions:** At a fixed depth and under a common initialization and training protocol, how do Sigmoid, Tanh, and ReLU differ in relative gradient attenuation, optimization progress, and validation performance?
+1. **RQ1 — Network Depth:** How does increasing network depth affect layer-wise weight-gradient magnitudes and early-layer trainability in Sigmoid MLPs trained on BloodMNIST?
+
+2. **RQ2 — Activation Functions:** At a fixed network depth and under a common initialization and training protocol, how do Sigmoid, Tanh, and ReLU differ in relative gradient attenuation, optimization progress, and validation performance?
+
+### Research Hypotheses
+
+- **H1 — Depth-Dependent Gradient Attenuation:** Increasing the depth of Sigmoid MLPs is expected to produce stronger relative gradient attenuation in earlier hidden layers.
+
+- **H2 — Early-Layer Trainability:** Stronger early-layer gradient attenuation is expected to be associated with smaller first-layer weight displacement and slower optimization progress.
+
+- **H3 — Activation-Dependent Behavior:** At a fixed network depth, activation-function choice is expected to affect relative gradient attenuation and trainability under a shared initialization and optimization protocol.  
 
 ## Experimental design
 
