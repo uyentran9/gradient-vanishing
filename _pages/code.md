@@ -9,7 +9,7 @@ author_profile: true
 
 <div class="code-actions">
   <a class="data-download-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb" download>⬇ Download .ipynb</a>
-  <a class="data-download-btn code-secondary-btn" href="{{ site.baseurl }}/files/Kaggle1_Uyen8.html" target="_blank" rel="noopener">↗ Open full-screen</a>
+  <a class="data-download-btn code-secondary-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb" target="_blank" rel="noopener">↗ Open full-screen</a>
 </div>
 
 <div id="notebook-wrap" class="notebook-wrap">
