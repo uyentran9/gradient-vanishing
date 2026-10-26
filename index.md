@@ -158,7 +158,7 @@ BloodMNIST is a public research dataset from **MedMNIST v2**, derived from perip
 ## Author
 
 **Victoria Tran (Uyen Tran)**  
-Individual project, AIO 2026 — Module 4
+Individual project
 
 
 
