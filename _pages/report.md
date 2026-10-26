@@ -10,12 +10,12 @@ author_profile: true
 <p>The full technical report documenting the problem formulation, data analysis, modeling approach, experimental results, and limitations of the Hepatic Risk Outcome Prediction project.</p>
 
 <div class="report-actions">
-  <a class="report-btn" href="{{ site.baseurl }}/files/HepaticRisk_TechnicalReport_UyenTran.pdf" download>⬇ Download PDF</a>
-  <a class="report-btn report-secondary-btn" href="{{ site.baseurl }}/files/HepaticRisk_TechnicalReport_UyenTran.pdf" target="_blank" rel="noopener">↗ Open full-screen</a>
+  <a class="report-btn" href="{{ site.baseurl }}/files/gradient_vanishing_technical_report_uyentran.pdf" download>⬇ Download PDF</a>
+  <a class="report-btn report-secondary-btn" href="{{ site.baseurl }}/files/gradient_vanishing_technical_report_uyentran.pdf" target="_blank" rel="noopener">↗ Open full-screen</a>
 </div>
 
 <div id="report-wrap" class="report-wrap">
-  <iframe id="report-frame" src="{{ site.baseurl }}/files/HepaticRisk_TechnicalReport_UyenTran.pdf" loading="lazy"></iframe>
+  <iframe id="report-frame" src="{{ site.baseurl }}/files/gradient_vanishing_technical_report_uyentran.pdf" loading="lazy"></iframe>
 </div>
 
 <style>
@@ -64,7 +64,7 @@ author_profile: true
 
 <script>
 (function () {
-  var url = '{{ site.baseurl }}/files/HepaticRisk_TechnicalReport_UyenTran.pdf';
+  var url = '{{ site.baseurl }}/files/gradient_vanishing_technical_report_uyentran.pdf';
   fetch(url, { method: 'HEAD' }).then(function (res) {
     if (!res.ok) throw new Error('missing');
   }).catch(function () {
@@ -75,6 +75,7 @@ author_profile: true
 })();
 </script>
 
+<!--  
 ## Presentation Slides
 
 <p>Slides summarizing the project's motivation, methodology, and key results.</p>
