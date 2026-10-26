@@ -5,7 +5,7 @@ author_profile: true
 --- 
 
 <p align="center">
-  <img src="{{ site.baseurl }}/images/hepatic-risk.png"
+  <img src="{{ site.baseurl }}/images/gradient_vanishing.png"
        width="960"
        alt="Hepatic Risk Outcome Prediction"
        style="border-radius: 14px;"/>
@@ -99,8 +99,26 @@ Tanh and ReLU exhibited substantially larger relative early-layer weight gradien
 The notebook and technical report include three primary figures:
 
 1. **Figure 1 — Gradient magnitude versus hidden-layer position:** Absolute and last-layer-normalized RMS weight gradients for D2, D5, D10, and D20 at epoch 1.
-2. **Figure 2 — Gradient evolution over training:** A layer-by-epoch heatmap for the D20 Sigmoid network across 20 epochs.
-3. **Figure 3 — Training-loss trajectories:** Mean training cross-entropy loss for Stage A depths, including the predefined 1.50 threshold.
+   <p align="center">
+  <img src="{{ site.baseurl }}/images/figure1_gradient_vs_layer.png"
+       width="960"
+       alt="Hepatic Risk Outcome Prediction"
+       style="border-radius: 14px;"/>
+</p>
+3. **Figure 2 — Gradient evolution over training:** A layer-by-epoch heatmap for the D20 Sigmoid network across 20 epochs.  
+<p align="center">
+  <img src="{{ site.baseurl }}/images/figure2_gradient_evolution_d20.png"
+       width="960"
+       alt="Hepatic Risk Outcome Prediction"
+       style="border-radius: 14px;"/>
+</p>
+4. **Figure 3 — Training-loss trajectories:** Mean training cross-entropy loss for Stage A depths, including the predefined 1.50 threshold.  
+<p align="center">
+  <img src="{{ site.baseurl }}/images/figure3_training_loss_curves.png"
+       width="960"
+       alt="Hepatic Risk Outcome Prediction"
+       style="border-radius: 14px;"/>
+</p>
 
 ## What the project demonstrates
 
