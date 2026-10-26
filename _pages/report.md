@@ -104,3 +104,4 @@ author_profile: true
 [⬇ Download the .pptx file](/hepatic-risk-prediction/files/UyenTran_Hepatic_Risk_Prediction_Slides.pptx)
 -->
 
+Thank you for visiting — and for being part of my journey 🌱  
