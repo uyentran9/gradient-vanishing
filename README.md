@@ -4,11 +4,19 @@ layout: single
 author_profile: true
 --- 
 
+<!--
 <p align="center">
   <img src="{{ site.baseurl }}/images/gradient_vanishing.png"
        width="960"
        alt="Investigating Vanishing Gradients"
        style="border-radius: 14px;"/>
+</p>
+-->  
+
+<p align="center">
+  <img src="images/gradient_vanishing.png"
+       width="960"
+       alt="Vanishing Gradients and Early-Layer Trainability in Deep MLPs"/>
 </p>
 
 
