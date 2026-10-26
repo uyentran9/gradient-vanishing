@@ -31,10 +31,12 @@ author_profile: true
   text-decoration: none !important;
 }
 .report-btn:hover { opacity: 0.85; }
-.report-secondary-btn {
-  background: transparent;
-  color: var(--global-base-color, #2f6f4f) !important;
-  border: 1px solid var(--global-base-color, #2f6f4f);
+/* Secondary button: Open full-screen */
+.report-secondary-btn,
+.report-secondary-btn:visited {
+  background: transparent !important;
+  color: #287f92 !important;
+  border: 1px solid #287f92 !important;
 }
 .report-wrap {
   border: 1px solid var(--global-border-color, #e8e8e8);
