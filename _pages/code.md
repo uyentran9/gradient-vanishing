@@ -225,3 +225,5 @@ The HTML export presents the notebook in a browser-readable format, preserving i
 })();
 </script>
 -->  
+
+Thank you for visiting — and for being part of my journey 🌱  
