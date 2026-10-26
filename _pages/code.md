@@ -3,7 +3,133 @@ layout: single
 title: "Code"
 permalink: /code/
 author_profile: true
+---  
+
+
 ---
+layout: single
+title: "Code"
+permalink: /code/
+author_profile: true
+---
+
+This page provides the PyTorch implementation and executed Jupyter Notebook for the study **Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST**.
+
+The original notebook contains the experimental implementation and recorded results. The HTML export provides a browser-readable version with code, explanations, saved outputs, tables, and figures.
+
+---
+
+## Jupyter Notebook — Executable Source
+
+The original `.ipynb` file contains the model architectures, training and validation procedures, layer-wise gradient measurements, experimental comparisons, and analysis code.
+
+<div class="code-actions">
+  <a class="code-btn code-primary-btn"
+     href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb"
+     download>
+    ⬇ Download .ipynb
+  </a>
+
+  <a class="code-btn code-secondary-btn"
+     href="https://github.com/uyentran9/gradient-vanishing/blob/main/files/gradient_vanishing_bloodmnist_uyentran_v4.ipynb"
+     target="_blank"
+     rel="noopener noreferrer">
+    ↗ View on GitHub
+  </a>
+</div>
+
+---
+
+## Executed Notebook — HTML Preview
+
+The HTML export preserves the notebook's saved code cells, Markdown explanations, experimental outputs, tables, and visualizations without requiring the experiments to be rerun.
+
+<div class="code-actions">
+  <a class="code-btn code-primary-btn"
+     href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html"
+     download>
+    ⬇ Download HTML
+  </a>
+
+  <a class="code-btn code-secondary-btn"
+     href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html"
+     target="_blank"
+     rel="noopener noreferrer">
+    ↗ Open full-screen
+  </a>
+</div>
+
+<div class="notebook-wrap">
+  <iframe
+    src="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html"
+    title="Gradient Vanishing — Executed Jupyter Notebook"
+    loading="lazy">
+  </iframe>
+</div>
+
+<style>
+/* Button layout */
+.code-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em;
+  margin: 1em 0 1.5em;
+}
+
+/* Shared button styling */
+.code-btn {
+  display: inline-block;
+  padding: 0.5em 1.1em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease;
+}
+
+/* Primary download button */
+.code-primary-btn,
+.code-primary-btn:visited {
+  background: #287f92 !important;
+  color: #ffffff !important;
+  border: 1px solid #287f92 !important;
+}
+
+/* Secondary view button */
+.code-secondary-btn,
+.code-secondary-btn:visited {
+  background: transparent !important;
+  color: #287f92 !important;
+  border: 1px solid #287f92 !important;
+}
+
+/* Hover effect */
+.code-btn:hover {
+  opacity: 0.85;
+  text-decoration: none !important;
+}
+
+/* Notebook preview container */
+.notebook-wrap {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Embedded HTML notebook */
+.notebook-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 85vh;
+  min-height: 700px;
+  border: 0;
+}
+</style>
+
+
+<!--  
 
 This page provides the PyTorch implementation and executed Jupyter Notebook for the study **Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST**.
 
@@ -33,7 +159,7 @@ The original `.ipynb` file contains the experimental implementation, including m
 The HTML export presents the notebook in a browser-readable format, preserving its saved experimental outputs and visualizations without requiring the notebook to be executed.  
 
 <div class="code-actions">
-  <a class="data-download-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" download>⬇ Download .ipynb</a>
+  <a class="data-download-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" download>⬇ Download HTML</a>
   <a class="data-download-btn code-secondary-btn" href="{{ site.baseurl }}/files/gradient_vanishing_bloodmnist_uyentran_v4.html" target="_blank" rel="noopener">↗ Open full-screen</a>
 </div>
 
@@ -98,3 +224,4 @@ The HTML export presents the notebook in a browser-readable format, preserving i
   });
 })();
 </script>
+-->  
