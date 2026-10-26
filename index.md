@@ -140,7 +140,7 @@ To reproduce the experiment, install the dependencies recorded in the repository
 
 The experiment was run with Python 3.13, PyTorch 2.14.1, and MedMNIST 3.0.2 on Apple Silicon using the MPS backend. Numerical results may vary with software versions, floating-point precision, and hardware backends.
 
-**Project materials:** [Experimental notebook](https://github.com/uyentran9/gradient-vanishing/tree/main/notebooks) · [Technical report](https://github.com/uyentran9/gradient-vanishing/tree/main/reports) · [GitHub repository](https://github.com/uyentran9/gradient-vanishing)
+**Project materials:** [Experimental notebook](https://github.com/uyentran9/gradient-vanishing/tree/main/notebooks) · [Technical report](https://github.com/uyentran9/gradient-vanishing/tree/main/files) · [GitHub repository](https://github.com/uyentran9/gradient-vanishing)
 
 ## Limitations and future work
 
