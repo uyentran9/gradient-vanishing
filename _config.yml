@@ -18,7 +18,7 @@ baseurl                  : "/gradient-vanishing"           # the repo name, star
 repository               : "uyentran9/gradient-vanishing"
 # DO NOT add theme: here, keep remote_theme from academicpages  
 site_theme: "default"
-remote_theme: "academicpages/academicpages.github.io@v0.8.3"
+remote_theme: "academicpages/academicpages.github.io@v0.8.4"
 
 # the rest of your existing config stays the same under here
 # (collections, plugins, author profile, etc.)
