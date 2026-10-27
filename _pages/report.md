@@ -7,7 +7,7 @@ author_profile: true
 
 ## Technical report
 
-<p>The full technical report documenting the problem formulation, data analysis, modeling approach, experimental results, and limitations of the Hepatic Risk Outcome Prediction project.</p>
+<p>The full technical report documenting the problem formulation, experimental design, gradient propagation analysis, optimization behavior, results, and limitations of the Gradient Vanishing study.</p>
 
 <div class="report-actions">
   <a class="report-btn" href="{{ site.baseurl }}/files/gradient_vanishing_technical_report_uyentran.pdf" download>⬇ Download PDF</a>
@@ -20,24 +20,36 @@ author_profile: true
 
 <style>
 .report-actions { margin: 1em 0 1.5em; display: flex; gap: 0.75em; flex-wrap: wrap; }
+
+/* Shared report button styling */
 .report-btn {
   display: inline-block;
   padding: 0.5em 1.1em;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #fff !important;
-  background: #287f92;
   border-radius: 4px;
   text-decoration: none !important;
 }
-.report-btn:hover { opacity: 0.85; }
-/* Secondary button: Open full-screen */
+
+/* Both buttons use the same navy color as Back to Home */
+.report-btn,
+.report-btn:visited,
 .report-secondary-btn,
 .report-secondary-btn:visited {
-  background: transparent !important;
-  color: #287f92 !important;
-  border: 1px solid #287f92 !important;
+  background: #1f4d7a !important;
+  color: #ffffff !important;
+  border: 1px solid #1f4d7a !important;
 }
+
+/* Darker navy on hover */
+.report-btn:hover,
+.report-btn:focus-visible {
+  background: #173b5e !important;
+  color: #ffffff !important;
+  border-color: #173b5e !important;
+  text-decoration: none !important;
+}
+
 .report-wrap {
   border: 1px solid var(--global-border-color, #e8e8e8);
   border-radius: 8px;
