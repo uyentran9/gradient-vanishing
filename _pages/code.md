@@ -79,27 +79,26 @@ The HTML export preserves the notebook's saved code cells, Markdown explanations
   transition: opacity 0.2s ease;
 }
 
-/* Primary download button */
-.code-primary-btn,
-.code-primary-btn:visited {
-  background: #287f92 !important;
-  color: #ffffff !important;
-  border: 1px solid #287f92 !important;
-}
 
-/* Secondary view button */
+/* All action buttons: consistent navy blue */
+.code-primary-btn,
+.code-primary-btn:visited,
 .code-secondary-btn,
 .code-secondary-btn:visited {
-  background: transparent !important;
-  color: #287f92 !important;
-  border: 1px solid #287f92 !important;
+  background: #1f4d7a !important;
+  color: #ffffff !important;
+  border: 1px solid #1f4d7a !important;
 }
 
 /* Hover effect */
-.code-btn:hover {
-  opacity: 0.85;
+.code-btn:hover,
+.code-btn:focus-visible {
+  background: #173b5e !important;
+  color: #ffffff !important;
+  border-color: #173b5e !important;
   text-decoration: none !important;
 }
+
 
 /* Notebook preview container */
 .notebook-wrap {
