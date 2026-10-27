@@ -10,7 +10,7 @@ toc_sticky: true
 ---
 
 > **Project:** Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST  
-> **Author:** Uyen Tran (Victoria Tran)  
+> **Author:** Victoria Tran (My-Uyen Tran) 
 > **Research Area:** Deep Learning · Neural Network Optimization · Gradient Analysis  
 > **Dataset:** BloodMNIST (MedMNIST v2)  
 > **Framework:** PyTorch  
