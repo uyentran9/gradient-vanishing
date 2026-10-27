@@ -31,24 +31,38 @@ author_profile: true
   text-decoration: none !important;
 }
 
-/* Both buttons use the same navy color as Back to Home */
-.report-btn,
-.report-btn:visited,
-.report-secondary-btn,
-.report-secondary-btn:visited {
+/* Primary button: Download PDF */
+.report-btn:not(.report-secondary-btn),
+.report-btn:not(.report-secondary-btn):visited {
   background: #1f4d7a !important;
   color: #ffffff !important;
   border: 1px solid #1f4d7a !important;
 }
 
-/* Darker navy on hover */
-.report-btn:hover,
-.report-btn:focus-visible {
+/* Secondary button: Open full-screen */
+.report-secondary-btn,
+.report-secondary-btn:visited {
+  background: #eef5fb !important;
+  color: #1f4d7a !important;
+  border: 1px solid #1f4d7a !important;
+}
+
+/* Primary button hover */
+.report-btn:not(.report-secondary-btn):hover,
+.report-btn:not(.report-secondary-btn):focus-visible {
   background: #173b5e !important;
   color: #ffffff !important;
   border-color: #173b5e !important;
-  text-decoration: none !important;
 }
+
+/* Secondary button hover */
+.report-secondary-btn:hover,
+.report-secondary-btn:focus-visible {
+  background: #dcebf7 !important;
+  color: #173b5e !important;
+  border-color: #173b5e !important;
+}
+
 
 .report-wrap {
   border: 1px solid var(--global-border-color, #e8e8e8);
