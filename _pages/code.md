@@ -5,14 +5,6 @@ permalink: /code/
 author_profile: true
 ---  
 
-
----
-layout: single
-title: "Code"
-permalink: /code/
-author_profile: true
----
-
 This page provides the PyTorch implementation and executed Jupyter Notebook for the study **Investigating Vanishing Gradients and Early-Layer Trainability Across Network Depth in Deep MLPs on BloodMNIST**.
 
 The original notebook contains the experimental implementation and recorded results. The HTML export provides a browser-readable version with code, explanations, saved outputs, tables, and figures.
