@@ -80,23 +80,37 @@ The HTML export preserves the notebook's saved code cells, Markdown explanations
 }
 
 
-/* All action buttons: consistent navy blue */
+
+/* Primary buttons: Download */
 .code-primary-btn,
-.code-primary-btn:visited,
-.code-secondary-btn,
-.code-secondary-btn:visited {
+.code-primary-btn:visited {
   background: #1f4d7a !important;
   color: #ffffff !important;
   border: 1px solid #1f4d7a !important;
 }
 
-/* Hover effect */
-.code-btn:hover,
-.code-btn:focus-visible {
+/* Secondary buttons: View on GitHub / Open full-screen */
+.code-secondary-btn,
+.code-secondary-btn:visited {
+  background: #eef5fb !important;
+  color: #1f4d7a !important;
+  border: 1px solid #1f4d7a !important;
+}
+
+/* Primary button hover */
+.code-primary-btn:hover,
+.code-primary-btn:focus-visible {
   background: #173b5e !important;
   color: #ffffff !important;
   border-color: #173b5e !important;
-  text-decoration: none !important;
+}
+
+/* Secondary button hover */
+.code-secondary-btn:hover,
+.code-secondary-btn:focus-visible {
+  background: #dcebf7 !important;
+  color: #173b5e !important;
+  border-color: #173b5e !important;
 }
 
 
