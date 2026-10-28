@@ -1,4 +1,3 @@
-
 {% include base_path %}
 
 <!-- start custom head snippets -->
@@ -39,7 +38,21 @@
     border: 1px solid #60788b !important;
     font-weight: 600;
   }
+}  
+
+
+/* Improve Light/Dark toggle icon visibility */
+#theme-toggle #theme-icon {
+  color: #243b53 !important;
+  font-size: 1.25rem;
+  opacity: 1 !important;
 }
+
+/* Dark Mode */
+html[data-theme="dark"] #theme-toggle #theme-icon {
+  color: #ffffff !important;
+}
+
 </style>
 
 <!-- end custom head snippets -->
