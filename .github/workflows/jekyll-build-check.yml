@@ -1,9 +1,9 @@
-name: Hepatic Jekyll Build Check
+name: Gradient Vanishing Jekyll Build Check
 
 on:
   push:
     branches:
-      - upgrade-v0-9
+      - pgrade-academicpages-v0.9
   pull_request:
     branches:
       - main
